@@ -1,5 +1,8 @@
 let cool = document.getElementById("cool");
 let meaning = document.getElementById("meaning");
+let input = document.getElementById("text-input");
+let button = document.getElementById("check-btn");
+let result = document.getElementById("result");
 
 cool.onclick = function () {
   if (meaning.innerHTML === "") {
@@ -10,11 +13,7 @@ cool.onclick = function () {
   }
 };
 
-let input = document.getElementById("text-input");
-let button = document.getElementById("check-btn");
-let result = document.getElementById("result");
-
-button.onclick = function () {
+const checkTheWord = () => {
   let text = input.value;
   if (text === "") {
     result.innerHTML = "";
@@ -46,3 +45,8 @@ button.onclick = function () {
     result.innerHTML = `<p class="meaning">${text} is not a palindrome</p>`;
   }
 };
+
+button.addEventListener("click", checkTheWord);
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") checkTheWord();
+});
